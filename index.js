@@ -184,12 +184,12 @@ const pokedex = [{
     }]
   }]
 
-const image = document.getElementsByTagName('img')[0]
+const image = document.getElementsByTagName('img')[0];
 index = 0;
-image.src = pokedex[index].img
+image.src = pokedex[index].img;
 
-const prevButton = document.getElementById('prev')
-const nextButton = document.getElementById('next')
+const prevButton = document.getElementById('prev');
+const nextButton = document.getElementById('next');
 
 // prevButton.addEventListener('click', () => {
 //   console.log("Prev pressed")
@@ -203,19 +203,31 @@ const nextButton = document.getElementById('next')
 // })
 
 //This does what we want now
-console.log(pokedex)
-document.addEventListener('click', (event) => {
-  if (event.target == prevButton) {
-    console.log('previous pressed')
+rightWards = true;
+function rotateOrder() {
+  if (rightWards) {
+    index++;
+    index = (index) % pokedex.length;
+    image.src = pokedex[index].img;
+    console.log(`displaying ${pokedex[index].name}!`);
+  } else {
     index--;
     if (index < 0) {
       index = pokedex.length - 1;
     }
-    image.src = pokedex[index].img
+    image.src = pokedex[index].img;
+    console.log(`displaying ${pokedex[index].name}!`);
+  }
+}
+setInterval(() => {
+    rotateOrder()
+  }, 1000)
+
+document.addEventListener('click', (event) => {
+  if (event.target === prevButton) {
+    rightWards = false;
   } 
   if (event.target.id === 'next') {
-    console.log("next pressed")
-    index = (index + 1) % pokedex.length
-    image.src = pokedex[index].img
+    rightWards = true;
   }
 })
