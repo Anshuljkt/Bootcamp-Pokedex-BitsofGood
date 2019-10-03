@@ -186,3 +186,26 @@ const pokedex = [{
 
 const image = document.getElementsByTagName('img')[0]
 image.src = pokedex[0].img
+
+const prevButton = document.getElementById('prev')
+const nextButton = document.getElementById('next')
+
+// prevButton.addEventListener('click', () => {
+//   console.log("Prev pressed")
+// })
+
+//Above method is not that great.
+
+//This will log every time the page is clicked.
+// document.addEventListener('click', () => {
+//   console.log('something clicked')
+// })
+
+//This does what we want now
+document.addEventListener('click', (event) => {
+  if (event.target == prevButton) {
+    console.log('previous pressed')
+  } else if (event.target == nextButton) {
+    console.log("next pressed")
+  }
+})
