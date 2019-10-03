@@ -185,7 +185,8 @@ const pokedex = [{
   }]
 
 const image = document.getElementsByTagName('img')[0]
-image.src = pokedex[0].img
+index = 0;
+image.src = pokedex[index].img
 
 const prevButton = document.getElementById('prev')
 const nextButton = document.getElementById('next')
@@ -202,10 +203,19 @@ const nextButton = document.getElementById('next')
 // })
 
 //This does what we want now
+console.log(pokedex)
 document.addEventListener('click', (event) => {
   if (event.target == prevButton) {
     console.log('previous pressed')
-  } else if (event.target == nextButton) {
+    index--;
+    if (index < 0) {
+      index = pokedex.length - 1;
+    }
+    image.src = pokedex[index].img
+  } 
+  if (event.target.id === 'next') {
     console.log("next pressed")
+    index = (index + 1) % pokedex.length
+    image.src = pokedex[index].img
   }
 })
